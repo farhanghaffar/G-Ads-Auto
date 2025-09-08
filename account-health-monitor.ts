@@ -1,4 +1,5 @@
 import { chromium, Page} from 'playwright';
+import publishSlackMessage from './helpers/sendSlackMessage';
 
 interface Config {
   primaryAccountId: string;
@@ -9,6 +10,7 @@ interface Config {
 }
 
 const config: Config = require('./config.json');
+const channelId: string | undefined = process.env.SLACK_CHANNEL_ID || undefined;
 
 function log(message: string) {
   console.log(`[${new Date().toISOString().split('T')[0]}] ${message}`);
@@ -72,6 +74,8 @@ async function monitorAccountHealth() {
       return;
     }
     log(`⚠️ ALERT DETECTED: ${alertType}`);
+    await publishSlackMessage(channelId!, `Account has following alert message: ${alertType}`);
+
     log('🔄 Initiating campaign backup...');
     await backupCampaign(page);
     log('✅ Backup completed successfully');

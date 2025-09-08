@@ -1,0 +1,15 @@
+{
+    "primaryAccountId": "7549467995",
+    "backupAccountId": "YOUR_BACKUP_ACCOUNT_ID",
+    "testCampaignName": "Brand_US_Search",
+    "monitoringInterval": 8,
+    "alertTriggers": [
+      "payment method needs updating",
+      "spending threshold reached",
+      "account requires attention",
+      "billing update required",
+      "payment processing paused",
+      "spending limit approaching",
+      "You've significantly exceeded your payment threshold and your service may be suspended."
+    ]
+  }
